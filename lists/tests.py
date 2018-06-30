@@ -31,6 +31,7 @@ class ListAndItemModelsTest(TestCase):
         self.assertEqual(second_saved_item.text, 'Item the second')
         self.assertEqual(second_saved_item.list, list_)
 
+
 class HomePageTest(TestCase):
 
     def test_uses_home_template(self):
@@ -61,6 +62,7 @@ class ListViewTest(TestCase):
         response = self.client.get(f'/lists/{correct_list.id}/')
         self.assertEqual(response.context['list'], correct_list)
 
+
 class NewListTest(TestCase):
 
     def test_can_save_a_POST_request(self):
@@ -73,6 +75,7 @@ class NewListTest(TestCase):
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
         new_list = List.objects.first()
         self.assertRedirects(response, f'/lists/{new_list.id}/')
+
 
 class NewItemTest(TestCase):
 
